@@ -171,7 +171,7 @@ runs:
         gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
         cd $gitfolder
         for i in *.zst *.sig *.tar; do
-        md5sum $i > $i.md5; done
+        test -e $i && md5sum $i > $i.md5; done
        
     #- name: prepare assets transaction
       #shell: bash -O extglob {0}
