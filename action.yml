@@ -171,7 +171,6 @@ runs:
     - name: CheckSum
       shell: bash -O extglob {0}
       run: |
-        echo "## calculating hashes"
         gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
         cd $gitfolder
         for i in *.zst *.sig *.tar; do
