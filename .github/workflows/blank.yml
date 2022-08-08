@@ -23,14 +23,11 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: CheckSum
-      shell: bash -O extglob {0}
-      run: |
-        echo "Checksum"
-        #gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
-        #cd $gitfolder
-        
-        wget -c https://github.com/BigLinux-Package-Build/build-package/releases/download/youtube-local-git/youtube-local-git-2022.08.05.4a81f50-2-any.pkg.tar.zst
-        wget -c https://github.com/BigLinux-Package-Build/build-package/releases/download/youtube-local-git/youtube-local-git-2022.08.05.4a81f50-2-any.pkg.tar.zst.sig
+        shell: bash -O extglob {0}
+        run: |
+          echo "Checksum"
+          wget -c https://github.com/BigLinux-Package-Build/build-package/releases/download/youtube-local-git/youtube-local-git-2022.08.05.4a81f50-2-any.pkg.tar.zst
+          wget -c https://github.com/BigLinux-Package-Build/build-package/releases/download/youtube-local-git/youtube-local-git-2022.08.05.4a81f50-2-any.pkg.tar.zst.sig
         
         echo '#!/bin/bash
         file=$(find -type f -iname "*.zst" | cut -d "/" -f2)
