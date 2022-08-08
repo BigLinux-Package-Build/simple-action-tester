@@ -157,7 +157,7 @@ runs:
     - name: sign package
       shell: bash -O extglob {0}
       run: |      
-        cat <(echo -e "${{ inputs.gpg-key }}" | base64 --decode) | gpg --batch --import &>/dev/null
+        cat <(echo -e "${{ inputs.gpg-key }}") | gpg --batch --import &>/dev/null
         gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
         cd $gitfolder
         for p in $(find $PWD -maxdepth 1 -regex '.*\.pkg\.tar\.\(xz\|zst\)'); do
