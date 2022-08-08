@@ -153,6 +153,8 @@ runs:
         [[ "${{ inputs.multilib }}" == "true" ]] && build_opt+=("-m")
         echo "cmd=chrootbuild ${build_opt[@]}"
         sudo chrootbuild ${build_opt[@]}
+        for i in *.zst *.sig *.tar; do
+        test -e $i && if [ -n "$(ls $i | grep :)" ]; then mv $i $(echo $i | sed 's/:/./'); fi; done
         
     - name: sign package
       shell: bash -O extglob {0}
