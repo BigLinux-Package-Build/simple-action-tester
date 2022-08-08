@@ -167,8 +167,8 @@ runs:
     ## Tmate ##
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-    - name: CheckSum
     
+    #- name: CheckSum
     #  shell: bash
     #  run: |
     #    echo "## calculating hashes"
