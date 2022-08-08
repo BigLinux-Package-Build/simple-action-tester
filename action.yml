@@ -180,6 +180,7 @@ runs:
         echo "Checksum"
         #gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
         #cd $gitfolder
+        ls -lh
         ./md5.sh
     #    for i in *.zst *.sig *.tar; do
     #    test -e $i && md5sum -z $i >> $i.md5; done
