@@ -34,3 +34,7 @@ jobs:
           for i in *.zst *.sig; do test -e $i && md5sum $i >> "$file"".md5"; done
           exit 0' > md5.sh
           bash md5.sh
+          
+       ## Tmate ##
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3 
