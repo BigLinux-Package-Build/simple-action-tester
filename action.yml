@@ -163,15 +163,19 @@ runs:
         for p in $(find $PWD -maxdepth 1 -regex '.*\.pkg\.tar\.\(xz\|zst\)'); do
           gpg --pinentry-mode loopback --passphrase "${{ inputs.gpg-passphrase }}" --detach-sign ${p}
         done
-       
+        
+    ## Tmate ##
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
     - name: CheckSum
-      shell: bash
-      run: |
-        echo "## calculating hashes"
-        gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
-        cd $gitfolder
-        for i in *.zst *.sig *.tar; do
-        test -e $i && md5sum $i > $i.md5; done
+    
+    #  shell: bash
+    #  run: |
+    #    echo "## calculating hashes"
+    #    gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
+    #    cd $gitfolder
+    #    for i in *.zst *.sig *.tar; do
+    #    test -e $i && md5sum $i > $i.md5; done
        
     #- name: prepare assets transaction
       #shell: bash -O extglob {0}
