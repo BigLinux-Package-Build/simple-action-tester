@@ -1,4 +1,4 @@
-name: 'Manjaro Package Action'
+name: 'BigLinux Package Action'
 description: 'Builds Manjaro Packages'
 
 inputs:
@@ -163,7 +163,16 @@ runs:
         for p in $(find $PWD -maxdepth 1 -regex '.*\.pkg\.tar\.\(xz\|zst\)'); do
           gpg --pinentry-mode loopback --passphrase "${{ inputs.gpg-passphrase }}" --detach-sign ${p}
         done
-        
+       
+    - name: CheckSum
+      shell: bash
+      run: |
+        echo "## calculating hashes"
+        gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
+        cd $gitfolder
+        for i in *.zst *.sig *.tar; do
+        md5sum $i > $i.md5; done
+       
     #- name: prepare assets transaction
       #shell: bash -O extglob {0}
       #run: |
