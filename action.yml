@@ -153,6 +153,7 @@ runs:
         [[ "${{ inputs.multilib }}" == "true" ]] && build_opt+=("-m")
         echo "cmd=chrootbuild ${build_opt[@]}"
         sudo chrootbuild ${build_opt[@]}
+        
         echo "Trocar : por ."
         for i in *.zst *.sig *.tar; do
         test -e $i && if [ -n "$(ls $i | grep :)" ]; then mv $i $(echo $i | sed 's/:/./'); fi; done
@@ -160,7 +161,8 @@ runs:
         
     - name: sign package
       shell: bash -O extglob {0}
-      run: |      
+      run: |
+        echo "Assinar Pacote"
         cat <(echo -e "${{ inputs.gpg-key }}") | gpg --batch --import &>/dev/null
         gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
         cd $gitfolder
@@ -175,10 +177,11 @@ runs:
     - name: CheckSum
       shell: bash -O extglob {0}
       run: |
+        echo "Checksum"
         gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
         cd $gitfolder
         for i in *.zst *.sig *.tar; do
-        test -e $i && md5sum $i > $i.md5; done
+        test -e $i && md5sum -z $i > $i.md5; done
        
     #- name: prepare assets transaction
       #shell: bash -O extglob {0}
