@@ -37,6 +37,10 @@ jobs:
       #    exit 0' > md5.sh
       #    bash md5.sh
           
-       ## Tmate ##
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3 
+       ### Tmate ##
+      #- name: Setup tmate session
+        #uses: mxschmitt/action-tmate@v3 
+      - name: Telegram Alert Start
+        shell: bash
+        run: |
+          curl -X POST -H 'Content-Type: application/json' -d "{"chat_id": "${{ secrets.CHAT_ID_TESTE }}", "text": "Gerando Pacote: ${{ env.pkgbuild_folder }} a partir do branch ${{ github.ref_name }}, link da geração: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID", "disable_notification": true}" ${{ secrets.MESSAGE_BOT_KEY }}  
