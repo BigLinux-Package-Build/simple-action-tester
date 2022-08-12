@@ -44,13 +44,15 @@ jobs:
       - name: Telegram Alert Start
         shell: bash
         run: |
-          echo $GITHUB_RUN_ID
-          echo $GITHUB_REPOSITORY
-          echo ${{ github.repository }}
-          #curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": ${{ secrets.CHAT_TESTE }}, "text": "Gerando Pacote: "${{ github.repository }}" Branch ${{ github.ref_name }}, link: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID, "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}
-          
-      - name: Send Message
-        shell: bash
-        run: |
+          echo ${{ github.action_path }}
+          echo ${{ github.action_ref }}
+          echo ${{ github.action_repository }}
+          echo ${{github.action_status  }}
+          echo ${{ github.actor }}
+          echo ${{ github.api_url }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.event }}
+          echo ${{ github.event_name }}
+          echo ${{ github.event_path }}
           echo ${{ github.action }}
           curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.CHAT_ID_TESTE }}", "text": "Criando pacote: ${{ github.head_ref }} https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}", "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}
