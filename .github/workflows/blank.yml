@@ -38,8 +38,9 @@ jobs:
       #    bash md5.sh
           
        ### Tmate ##
-      #- name: Setup tmate session
-        #uses: mxschmitt/action-tmate@v3 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3 
+        
       - name: Telegram Alert Start
         shell: bash
         run: |
