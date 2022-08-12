@@ -43,4 +43,6 @@ jobs:
       - name: Telegram Alert Start
         shell: bash
         run: |
-          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": '"${{ secrets.CHAT_ID_TESTE }}"', "text": "Gerando Pacote: '"${{ env.pkgbuild_folder }}"' a partir do branch '"${{ github.ref_name }}"', link da geração: https://github.com/'"$GITHUB_REPOSITORY"'/actions/runs/'"$GITHUB_RUN_ID"'", "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}  
+        echo $GITHUB_RUN_ID
+        echo $GITHUB_REPOSITORY
+          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": ${{ secrets.CHAT_ID_TESTE }}, "text": "Gerando Pacote: ${{ env.pkgbuild_folder }} a partir do branch '"${{ github.ref_name }}"', link da geração: https://github.com/'"$GITHUB_REPOSITORY"'/actions/runs/'"$GITHUB_RUN_ID"', "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}  
