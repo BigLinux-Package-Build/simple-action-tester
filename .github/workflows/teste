@@ -1,0 +1,7 @@
+          echo ${{ github.action }}
+          echo ${{ github.actor }}
+          echo ${{ github.event_name }}
+          echo ${{ github.job }}
+          echo ${{ github.ref_name }}
+          echo ${{ github.workflow }}
+          echo ${{ runner.name }}
