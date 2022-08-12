@@ -45,4 +45,4 @@ jobs:
         run: |
           echo $GITHUB_RUN_ID
           echo $GITHUB_REPOSITORY
-          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.CHAT_TESTE }}", "text": "Gerando Pacote: ${{ env.pkgbuild_folder }} a partir do branch ${{ github.ref_name }}, link da geração: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID, "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}
+          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.CHAT_TESTE }}", "text": "Gerando Pacote: ${{ github.repository }} a partir do branch ${{ github.ref_name }}, link da geração: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID, "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}
