@@ -51,4 +51,4 @@ jobs:
           echo ${{ github.ref_name }}
           echo ${{ github.workflow }}
           echo ${{ runner.name }}
-          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.CHAT_ID_TESTE }}", "text": "Criando pacote: ${{ github.head_ref }} https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}", "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}
+          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.CHAT_ID_TESTE }}", "text": "Criando pacote: ${{ github.head_ref }} Enviado por':' ${{ github.actor }} https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}", "disable_notification": true}' ${{ secrets.MESSAGE_BOT_KEY }}
