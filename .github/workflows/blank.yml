@@ -42,18 +42,17 @@ jobs:
         run: |
           echo "## ssh setup"
           mkdir -p /home/runner/.ssh
-          touch /home/runner/.ssh/github_actions
-          chmod 600 /home/runner/.ssh/github_actions
+          touch /home/runner/.ssh/id_ed25519
+          chmod 600 /home/runner/.ssh/id_ed25519
           #ssh-agent -a /tmp/ssh_agent.sock > /dev/null
       
       
       - name: Push to Repo
         shell: bash
         run: |
-          echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/github_actions
-          #eval `ssh-agent -s`
-          #ssh-add /home/runner/.ssh/github_actions
-          #ssh-keyscan ${{ secrets.XIVASTUDIO_SOURCEFORGE_HOST }} >> /home/runner/.ssh/known_hosts
+          echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
+          
       
        ## Tmate ##
       - name: Setup tmate session
