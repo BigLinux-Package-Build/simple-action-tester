@@ -51,9 +51,9 @@ jobs:
         shell: bash
         run: |
           echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/github_actions
-          eval `ssh-agent -s`
-          ssh-add /home/runner/.ssh/github_actions
-          ssh-keyscan ${{ secrets.XIVASTUDIO_SOURCEFORGE_HOST }} >> /home/runner/.ssh/known_hosts
+          #eval `ssh-agent -s`
+          #ssh-add /home/runner/.ssh/github_actions
+          #ssh-keyscan ${{ secrets.XIVASTUDIO_SOURCEFORGE_HOST }} >> /home/runner/.ssh/known_hosts
       
        ## Tmate ##
       - name: Setup tmate session
