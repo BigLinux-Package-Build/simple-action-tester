@@ -36,7 +36,25 @@ jobs:
       #    for i in *.zst *.sig; do test -e $i && md5sum $i >> "$file"".md5"; done
       #    exit 0' > md5.sh
       #    bash md5.sh
-          
+      
+      - name: Prepare Upload
+        shell: bash
+        run: |
+          echo "## ssh setup"
+          mkdir -p /home/runner/.ssh
+          touch /home/runner/.ssh/github_actions
+          chmod 600 /home/runner/.ssh/github_actions
+          #ssh-agent -a /tmp/ssh_agent.sock > /dev/null
+      
+      
+      - name: Push to Repo
+        shell: bash
+        run: |
+          echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/github_actions
+          eval `ssh-agent -s`
+          ssh-add /home/runner/.ssh/github_actions
+          ssh-keyscan ${{ secrets.XIVASTUDIO_SOURCEFORGE_HOST }} >> /home/runner/.ssh/known_hosts
+      
        ## Tmate ##
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3 
