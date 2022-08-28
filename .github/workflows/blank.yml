@@ -37,21 +37,21 @@ jobs:
       #    exit 0' > md5.sh
       #    bash md5.sh
       
-      - name: Prepare Upload
-        shell: bash
-        run: |
-          echo "## ssh setup"
-          mkdir -p /home/runner/.ssh
-          touch /home/runner/.ssh/id_ed25519
-          chmod 600 /home/runner/.ssh/id_ed25519
-          #ssh-agent -a /tmp/ssh_agent.sock > /dev/null
+      #- name: Prepare Upload
+        #shell: bash
+        #run: |
+          #echo "## ssh setup"
+          #mkdir -p /home/runner/.ssh
+          #touch /home/runner/.ssh/id_ed25519
+          #chmod 600 /home/runner/.ssh/id_ed25519
+          ##ssh-agent -a /tmp/ssh_agent.sock > /dev/null
       
       
-      - name: Push to Repo
-        shell: bash
-        run: |
-          echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
-          ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
+      #- name: Push to Repo
+        #shell: bash
+        #run: |
+          #echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
+          #ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
           
       
        ## Tmate ##
