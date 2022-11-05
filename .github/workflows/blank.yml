@@ -62,7 +62,13 @@ jobs:
       
        ## Tmate ##
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3 
+        uses: mxschmitt/action-tmate@v3
+        
+        
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         
       #- name: Telegram Alert Start
         #shell: bash
