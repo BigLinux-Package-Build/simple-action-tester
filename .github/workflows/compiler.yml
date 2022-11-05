@@ -1,4 +1,4 @@
-name: build-package
+name: compiler
 
 # Controls when the workflow will run
 on:
