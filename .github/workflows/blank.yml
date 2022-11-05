@@ -52,7 +52,12 @@ jobs:
         #run: |
           #echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
           #ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
-          
+       
+      - name: Push to Repo
+        shell: bash
+        run: |
+          sed -i 's/#X11DisplayOffset 10/X11DisplayOffset 10/' /etc/ssh/sshd_config
+          cat /var/run/sshd.pid | sudo xargs kill -1
       
        ## Tmate ##
       - name: Setup tmate session
