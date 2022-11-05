@@ -53,21 +53,30 @@ jobs:
           #echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
           #ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
        
-      # - name: Get Blender
-      #   shell: bash
-      #   run: |
-      #     wget https://mirror.clarkson.edu/blender/release/Blender3.3/blender-3.3.1-linux-x64.tar.xz
-      #     tar -xvf blender-3.3.1-linux-x64.tar.xz
-      #     git clone https://github.com/gitbarnabedikartola/teste-blender.git
-      #     cd teste-blender/cronometro
-      #     wget https://github.com/gitbarnabedikartola/teste-blender/releases/download/0.0.1/5min.mkv
-      #     cd ..
-      #     ../blender-3.3.1-linux-x64/blender -b big-vs-mint-v3.blend -a -x 1 -o // -S video -noaudio
+      - name: Get Blender
+        shell: bash
+        run: |
+          wget https://mirror.clarkson.edu/blender/release/Blender3.3/blender-3.3.1-linux-x64.tar.xz
+          tar -xvf blender-3.3.1-linux-x64.tar.xz
+          git clone https://github.com/gitbarnabedikartola/teste-blender.git
+          cd teste-blender/cronometro
+          wget https://github.com/gitbarnabedikartola/teste-blender/releases/download/0.0.1/5min.mkv
+          cd ..
+          ../blender-3.3.1-linux-x64/blender -b big-vs-mint-v3.blend -a -x 1 -o // -S video -noaudio -f 600
           
       
-       ## Tmate ##
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      #  ## Tmate ##
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+        
+      - name: push to git releases
+        shell: bash
+        run: |
+          # gh release create 0.0.1 --title cronometro --repo gitbarnabedikartola/teste-blender --notes "notas"
+          for i in .mkv; do
+            gh release upload 0.0.1 --repo gitbarnabedikartola/teste-blender --clobber $i
+          done
+          
       
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
