@@ -53,11 +53,12 @@ jobs:
           #echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
           #ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
        
-      - name: Push to Repo
+      - name: Get Blender
         shell: bash
         run: |
-          sudo sed -i 's/#X11DisplayOffset 10/X11DisplayOffset 10/' /etc/ssh/sshd_config
-          cat /var/run/sshd.pid | sudo xargs kill -1
+          wget https://mirror.clarkson.edu/blender/release/Blender3.3/blender-3.3.1-linux-x64.tar.xz
+          tar -xvf blender-3.3.1-linux-x64.tar.xz
+          git clone https://github.com/gitbarnabedikartola/teste-blender.git
       
        ## Tmate ##
       - name: Setup tmate session
