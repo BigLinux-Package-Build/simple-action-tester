@@ -53,10 +53,17 @@ jobs:
           #echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
           #ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
           
+      - name: Push to Repo
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install tmate
+          tmate -F
+          
       
-       ## Tmate ##
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      #  ## Tmate ##
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
       
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
