@@ -28,8 +28,21 @@ jobs:
       - name: Bash
         shell: bash
         run: |
-          cat /etc/pacman.conf
-          cat /etc/pacman.d/mirrorlist
+          echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+          pacman -Syu --noconfirm sudo git github-cli openssh gnupg coreutils rsync wget
+          
+          git clone https://aur.archlinux.org/bigbashview.git
+          gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
+          cd $gitfolder
+          
+          makepkg -s --noconfirm
+          
+          ls -lh
+          
+          
+          
+          
+          
       #- name: CheckSum
       #  shell: bash -O extglob {0}
       #  run: |
