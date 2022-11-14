@@ -18,12 +18,18 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container: archlinux:latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
+      - names: Bash
+        shell: bash
+        run: |
+          cat /etc/pacman.conf
+          cat /etc/pacman.d/mirrorlist
       #- name: CheckSum
       #  shell: bash -O extglob {0}
       #  run: |
@@ -53,14 +59,7 @@ jobs:
           #echo "${{ secrets.XIVASTUDIO_SOURCEFORGE_KEY }}" >> /home/runner/.ssh/id_ed25519
           #ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
           
-      - name: Push to Repo
-        shell: bash
-        run: |
-          sudo apt update
-          sudo apt install tmate
-          tmate -F
-          
-      
+
       #  ## Tmate ##
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
