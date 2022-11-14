@@ -41,10 +41,17 @@ jobs:
           
           su builduser
           
-          makepkg -s --noconfirm
+          sudo -u builduser bash -c 'makepkg -s --noconfirm'
           
           ls -lh
           
+          
+
+          useradd builduser -m 
+          passwd -d builduser 
+          printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers 
+          sudo -u builduser bash -c 'cd ~ && git clone https://some-pkgbuild.git some-pkgbuild && cd some-pkgbuild && makepkg -s --noconfirm' # Clone and build a package
+
           
           
           
