@@ -35,9 +35,16 @@ jobs:
           gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
           cd $gitfolder
           
+          useradd builduser -m 
+          passwd -d builduser 
+          printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
+          
+          su builduser
+          
           makepkg -s --noconfirm
           
           ls -lh
+          
           
           
           
