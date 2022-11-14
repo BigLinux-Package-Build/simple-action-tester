@@ -31,15 +31,17 @@ jobs:
           echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           pacman -Syu --noconfirm sudo git github-cli openssh gnupg coreutils rsync wget
           
-          git clone https://aur.archlinux.org/bigbashview.git
-          gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
-          cd $gitfolder
+          # git clone https://aur.archlinux.org/bigbashview.git
+          # gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
+          # cd $gitfolder
           
           useradd builduser -m 
           passwd -d builduser 
           printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
           
-          su builduser
+          mkdir -p builder
+          sudo chmod 777 builder
+          cd builder
           
           sudo -u builduser bash -c 'git clone https://aur.archlinux.org/bigbashview.git && \
           gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//') && \
