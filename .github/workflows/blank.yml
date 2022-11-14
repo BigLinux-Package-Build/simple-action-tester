@@ -41,7 +41,10 @@ jobs:
           
           su builduser
           
-          sudo -u builduser bash -c 'makepkg -s --noconfirm'
+          sudo -u builduser bash -c 'git clone https://aur.archlinux.org/bigbashview.git && \
+          gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//') && \
+          cd $gitfolder && \
+          makepkg -s --noconfirm'
           
           ls -lh
           
