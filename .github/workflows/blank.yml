@@ -18,44 +18,44 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container: archlinux:latest
+    # container: archlinux:latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: Bash
-        shell: bash
-        run: |
-          echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          pacman -Syu --noconfirm sudo git github-cli openssh gnupg coreutils rsync wget fakeroot binutils
-          
-          # git clone https://aur.archlinux.org/bigbashview.git
-          # gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
-          # cd $gitfolder
-          
-          useradd builduser -m 
-          passwd -d builduser 
-          printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
-          
-          # sudo chmod 777 .
-          git clone https://aur.archlinux.org/bigbashview.git
-          gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
-          chmod 777 $gitfolder
-          cd $gitfolder
-          
-          
-          sudo -u builduser bash -c 'makepkg -s --noconfirm'
-          
-          ls -lh
-          
-          
-
-          # useradd builduser -m 
-          # passwd -d builduser 
-          # printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers 
-          # sudo -u builduser bash -c 'cd ~ && git clone https://some-pkgbuild.git some-pkgbuild && cd some-pkgbuild && makepkg -s --noconfirm' # Clone and build a package
+#       - name: Bash
+#         shell: bash
+#         run: |
+#           echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+#           pacman -Syu --noconfirm sudo git github-cli openssh gnupg coreutils rsync wget fakeroot binutils
+#           
+#           # git clone https://aur.archlinux.org/bigbashview.git
+#           # gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
+#           # cd $gitfolder
+#           
+#           useradd builduser -m 
+#           passwd -d builduser 
+#           printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
+#           
+#           # sudo chmod 777 .
+#           git clone https://aur.archlinux.org/bigbashview.git
+#           gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
+#           chmod 777 $gitfolder
+#           cd $gitfolder
+#           
+#           
+#           sudo -u builduser bash -c 'makepkg -s --noconfirm'
+#           
+#           ls -lh
+#           
+#           
+# 
+#           # useradd builduser -m 
+#           # passwd -d builduser 
+#           # printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers 
+#           # sudo -u builduser bash -c 'cd ~ && git clone https://some-pkgbuild.git some-pkgbuild && cd some-pkgbuild && makepkg -s --noconfirm' # Clone and build a package
 
           
           
