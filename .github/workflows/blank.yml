@@ -92,9 +92,9 @@ jobs:
           #ssh-keyscan -t ed25519 shell.sourceforge.net > /home/runner/.ssh/known_hosts
           
 
-      #  ## Tmate ##
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
+       ## Tmate ##
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
