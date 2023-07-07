@@ -116,6 +116,8 @@ jobs:
           ssh-add /home/runner/.ssh/github_actions
           echo "8"
           # ssh-keyscan -t rsa -p ${{ secrets.PKGBUILD_PORT }} ${{ secrets.PKGBUILD_HOST }} >> /home/runner/.ssh/known_hosts
+          echo ${{ secrets.PKGBUILD_PORT }} > port
+          echo ${{ secrets.PKGBUILD_HOST }} > host
           
       # # Tmate ##
       - name: Setup tmate session
