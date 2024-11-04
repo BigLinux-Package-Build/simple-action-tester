@@ -1,6 +1,9 @@
 name: Check Event Type
 
 on:
+  repository_dispatch:
+    types:
+      - xpto
   workflow_dispatch:
   push:
   pull_request:
